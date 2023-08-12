@@ -19,9 +19,26 @@ public class User {
    @Column(name = "email")
    private String email;
 
+   @MapsId
+   @OneToOne
+   @JoinColumn(name = "car_id")
+   private Car car;
+
+
    public User() {}
-   
-   public User(String firstName, String lastName, String email) {
+
+
+   public Car getCar() {
+      return car;
+   }
+
+   public User setCar(Car car) {
+      this.car = car;
+      return null;
+   }
+
+   public User(String firstName, String lastName, String email, Car car) {
+      this.car =car;
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
@@ -57,5 +74,16 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   @Override
+   public String toString() {
+      return "User { " +
+              "id = " + id +"\n"+
+              ", firstName = '" + firstName + '\'' +"\n"+
+              ", lastName = '" + lastName + '\'' +"\n"+
+              ", email = '" + email + '\'' +"\n"+
+              ", car = " + car +"\n"+
+              '}';
    }
 }
